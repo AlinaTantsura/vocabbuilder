@@ -5,7 +5,8 @@ import Header from "../components/Header"
 export const macPaw = localFont({
   src: "./fonts/FixelDisplay-Regular.otf",
   variable: '--font-mac-paw',
-  weight: "100 900",
+  // weight: "100 900",
+  display: 'swap',
 });
 
 export const sfPro = localFont({
