@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import UserBar from './UserBar';
 import UserNav from './UserNav';
-// import sprite from "/assets/icons/sprite.svg"
 
 const Home = () => {
   return (
-    <header className="p-4 md:py-6 md:px-8 xl:px-[100px] flex justify-between">
+    <header className="p-4 md:py-6 md:px-8 desk:px-[100px] flex justify-between">
       <Link
         href="/"
         className="flex gap-4 items-center font-semibold text-[18px] md:text-[22px] leading-[133%] md:leading-[145%]"

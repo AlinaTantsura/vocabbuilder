@@ -9,7 +9,7 @@ const UserNav = () => {
 
   // Navigation for header
   return (
-    <nav className="hidden xl:flex gap-[28px] items-center">
+    <nav className="hidden desk:flex gap-[28px] items-center">
       <Link
         href="/dictionary"
         className={clsx(

@@ -12,6 +12,9 @@ export const theme = {
       macPaw: ["var(--font-mac-paw)", ...fontFamily.sans],
       sfPro: ["var(--font-sf-pro)", ...fontFamily.sans],
     },
+    screens: {
+      'desk': "1440px",
+    },
     colors: {
       'black-main': "var(--black)",
       'green-main': "var(--green)",

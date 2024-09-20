@@ -26,9 +26,11 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="logo.svg" sizes="any" />
       </head>
-      <body className="font-macPaw">
+      <body className="font-macPaw h-[100vh] max-w-[375px] md:max-w-[768px] desk:max-w-[1440px] mx-auto flex flex-col">
         <Header />
-        {children}
+        <main className="grow-[1] flex justify-center items-center">
+          {children}
+        </main>
       </body>
     </html>
   );
