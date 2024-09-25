@@ -1,4 +1,4 @@
-import {Schema, model, models} from "mongoose"
+import { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema({
     name: {
@@ -14,9 +14,14 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Password is required"],
         // match: [/^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/, "Password is invalid"]
-    }
+    },
+    token: {
+        type: String,
+        default: null
+    },
+
 })
 
-const User = models.User ?? model("users", userSchema);
+const User = models?.User ?? model("User", userSchema);
 
 export default User;

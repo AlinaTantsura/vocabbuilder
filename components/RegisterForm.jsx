@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Button from "./Button";
+import { loginUser } from "@/utils/auth";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -9,21 +10,26 @@ const RegisterForm = () => {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     
-    const data = new FormData(e.currentTarget);
-
-    const name = data.get('name');
-    const email = data.get('email');
-    const password = data.get('password');
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      password: formData.get('password')
+    }
 
     try {
-     const response = await fetch("/api/register", {
-        method: "POST",
-        body: JSON.stringify({
-          name, email, password
-        })
+     const response = await fetch("/api/users/register", {
+       method: "POST",
+       headers: {
+         "Content-type": "application/json"},
+        body: JSON.stringify(data)
      })
       
-      response.status === 201 && router.push("/dictionary")
+      if (response.ok) {
+        const result = await loginUser(data)
+        console.log("This is register", result)
+        // if(result.ok) router.push('/dictionary');
+      }
     }
     catch (err) {
       console.log(err.message)
