@@ -2,8 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import Button from './Button';
-import { connectToDB } from '@/utils/database';
-import { signIn, signOut } from 'next-auth/react';
 import { loginUser } from '@/utils/auth';
 
 const LoginForm = () => {
@@ -11,6 +9,7 @@ const LoginForm = () => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
 
     const formData = new FormData(e.currentTarget);
     
@@ -21,8 +20,8 @@ const LoginForm = () => {
     
     try {
       const result = await loginUser(data);
-      console.log("This is login", result.user.token);
-      if(result.ok) router.push('/dictionary');
+      if (result.ok) router.replace('/dictionary');
+      else console.log(result.props.statusText)
     } catch (error) {
       console.log(error)
     }
@@ -54,7 +53,6 @@ const LoginForm = () => {
       </div>
 
       <Button type="submit">Login</Button>
-      <Button type="button" onClick={()=>signOut()}>Logout</Button>
     </form>
   );
 };

@@ -1,5 +1,21 @@
-const UserBar = () => {
+'use client'
 
+import { useState, useEffect } from "react";
+import LogoutBtn from "./LogoutBtn";
+import Cookies from "js-cookie";
+
+const UserBar = () => {
+  //   const isLoggedIn = localStorage.getItem('token');
+  const [isLoggedIn, setIsLoggedIn] = useState("null");
+  useEffect(() => {
+    const token = Cookies.get("token");
+    setIsLoggedIn(!!token);
+  
+  }, [])
+    
+  if (!isLoggedIn) return null;
+
+  // if (!isLoggedIn) return null;
     // User bar for desktop header
 return (
     <div className="flex gap-2 md:gap-[28px] items-center">
@@ -9,12 +25,7 @@ return (
           <use href="/assets/icons/sprite.svg#icon-gridicons_user" />
         </svg>
       </h2>
-        <button type="button" className="hidden desk:flex gap-1 items-center text-[16px] leading-[150%]">
-            Log out
-        <svg className="w-4 h-4 stroke-black-main">
-          <use href="/assets/icons/sprite.svg#icon-switch-horizontal-01-1" />
-        </svg>
-        </button>
+        <LogoutBtn />
         <button type="button" className="desk:hidden">
         <svg className="w-8 h-8 stroke-black-main">
            <use href="/assets/icons/sprite.svg#icon-Nav" />

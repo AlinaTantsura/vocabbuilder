@@ -12,7 +12,7 @@ export const POST = async req => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return new NextResponse('User not found', { status: 404 });
+      return new NextResponse('Incorrent email or password', { status: 400 });
     }
 
     const isMatchPassword = await bcrypt.compare(password, user.password);
@@ -20,10 +20,10 @@ export const POST = async req => {
     if (!isMatchPassword) {
       return new NextResponse('Incorrent email or password', { status: 400 });
     } else {
-        const payload={email}
+       
+        const payload={id: user._id}
         const token = jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "23h"});
         const userUpdated = await User.findOneAndUpdate({ email }, { token }, {new: true})
-        console.log(userUpdated)
       return new NextResponse(JSON.stringify({user: userUpdated}), {
         status: 200,
         headers: {

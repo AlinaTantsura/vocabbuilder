@@ -1,3 +1,6 @@
+import Error from "next/error";
+import Cookies from 'js-cookie';
+
 export const loginUser = async (data) => {
     const { email, password } = data;
 
@@ -13,12 +16,16 @@ export const loginUser = async (data) => {
       })
         
         // console.log(response)
+        console.log(response)
 
       if (response.ok) {
           const data = await response.json();
-          localStorage.setItem('token', data.user.token)
-          return data;
+        // localStorage.setItem('token', data.user.token)
+        Cookies.set('token', data.user.token);
+          return {ok: response.ok, data};
       }
+      else {
+        throw new Error(response)     }
 
     } catch (error) {
         return error;

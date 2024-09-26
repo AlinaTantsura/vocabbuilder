@@ -3,9 +3,13 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Cookies from "js-cookie";
 
 const UserNav = () => {
   const path = usePathname();
+  // const isLoggedIn = Cookies.get("token");
+  // if (!isLoggedIn) return null;
+
 
   // Navigation for header
   return (

@@ -27,8 +27,8 @@ const RegisterForm = () => {
       
       if (response.ok) {
         const result = await loginUser(data)
-        console.log("This is register", result)
-        // if(result.ok) router.push('/dictionary');
+        // console.log("This is register", result)
+        if(result.ok) router.replace('/dictionary');
       }
     }
     catch (err) {

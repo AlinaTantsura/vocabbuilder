@@ -1,7 +1,6 @@
 import './globals.css';
 import localFont from 'next/font/local';
 import Header from '../components/Header';
-import Provider from '@/components/Provider';
 
 export const macPaw = localFont({
   src: './fonts/FixelDisplay-Regular.otf',
@@ -28,12 +27,10 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="logo.svg" sizes="any" />
       </head>
       <body className="font-macPaw h-[100vh] max-w-[375px] md:max-w-[768px] desk:max-w-[1440px] mx-auto flex flex-col">
-        <Provider>
           <Header />
           <main className="grow-[1] flex justify-center items-center">
             {children}
           </main>
-        </Provider>
       </body>
     </html>
   );
