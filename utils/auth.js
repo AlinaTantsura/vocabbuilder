@@ -1,4 +1,3 @@
-import Error from "next/error";
 import Cookies from 'js-cookie';
 
 export const loginUser = async (data) => {
@@ -15,18 +14,17 @@ export const loginUser = async (data) => {
         })
       })
         
-        // console.log(response)
-        console.log(response)
 
       if (response.ok) {
-          const data = await response.json();
+        const data = await response.json();
         // localStorage.setItem('token', data.user.token)
         Cookies.set('token', data.user.token);
-          return {ok: response.ok, data};
+        return { ok: response.ok, data };
       }
       else {
-        throw new Error(response)     }
-
+        const message = await response.text()
+        return { ok: response.ok, status: response.status, message }
+      }
     } catch (error) {
         return error;
     }

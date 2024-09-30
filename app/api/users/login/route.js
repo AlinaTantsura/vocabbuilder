@@ -12,13 +12,13 @@ export const POST = async req => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return new NextResponse('Incorrent email or password', { status: 400 });
+      return new NextResponse(JSON.stringify('Incorrent email or password'), { status: 400 });
     }
 
     const isMatchPassword = await bcrypt.compare(password, user.password);
 
     if (!isMatchPassword) {
-      return new NextResponse('Incorrent email or password', { status: 400 });
+      return new NextResponse(JSON.stringify('Incorrent email or password'), { status: 400 });
     } else {
        
         const payload={id: user._id}
@@ -33,6 +33,6 @@ export const POST = async req => {
     }
 
   } catch (error) {
-    return new NextResponse(error.message, { status: 500 });
+    return new NextResponse(JSON.stringify(error.message), { status: 500 });
   }
 };

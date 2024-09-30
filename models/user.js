@@ -8,12 +8,12 @@ const userSchema = new Schema({
     email: {                        
         type: String,
         required: [true, "Email is required"],
-        // match: [/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Email is invalid"]
+        match: [/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Email is invalid"]
     },
     password: {
         type: String,
         required: [true, "Password is required"],
-        // match: [/^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/, "Password is invalid"]
+        match: [/^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/, "Password must have at list 6 letters and 1 number"]
     },
     token: {
         type: String,

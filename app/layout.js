@@ -1,6 +1,8 @@
 import './globals.css';
 import localFont from 'next/font/local';
 import Header from '../components/Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const macPaw = localFont({
   src: './fonts/FixelDisplay-Regular.otf',
@@ -30,7 +32,8 @@ export default function RootLayout({ children }) {
           <Header />
           <main className="grow-[1] flex justify-center items-center">
             {children}
-          </main>
+        </main>
+        <ToastContainer />
       </body>
     </html>
   );

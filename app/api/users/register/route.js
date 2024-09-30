@@ -9,21 +9,25 @@ export const POST = async req => {
     await connectToDB();
 
     const user = await User.findOne({ email });
-    if(user) return new NextResponse("User is already exist", {status: 400});
+    if(user) return new NextResponse(JSON.stringify("User is already exist"), {status: 400});
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = {
+    const newUser = new User({
       name,
       email,
-      password: hashedPassword,
-      token: null,
-    };
-
+      password,
+    });
+   
+    await newUser.validate();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
     await User.create(newUser);
+    await User.findOneAndUpdate({email}, {password: hashedPassword})
 
-    return new NextResponse('New user is created', { status: 201 });
+    return new NextResponse(JSON.stringify('New user is created'), { status: 201 });
   } catch (error) {
-      return new NextResponse(error.message, {status: 500});
+    if (error.name === 'ValidationError') {
+      return new NextResponse(JSON.stringify(error.errors), { status: 400 });
+    }
+      return new NextResponse(JSON.stringify(error.message), {status: 500});
   }
 };

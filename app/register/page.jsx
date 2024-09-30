@@ -4,11 +4,13 @@ import Link from 'next/link';
 
 const RegisterPage = () => {
   return (
-    <div className="w-full flex flex-col md:flex-col-reverse desk:flex-row-reverse desk:justify-between desk:px-[100px]">
+    <div className="relative w-full flex flex-col md:flex-col-reverse desk:flex-row-reverse desk:justify-between desk:px-[100px]">
       <section>
         <div className="relative w-[241px] h-[191px] md:hidden mx-auto">
           <Image
             fill
+            sizes="100%"
+            priority
             src="/assets/images/main-picture-mobile.png"
             alt="Boy and girl are reading books"
             srcSet="/assets/images/main-picture-mobile@2x.png 2x, /assets/images/main-picture-mobile.png 1x"
@@ -17,6 +19,8 @@ const RegisterPage = () => {
         <div className="relative hidden desk:block desk:w-[498px] desk:h-[435px]">
           <Image
             fill
+            sizes="100%"
+            priority
             src="/assets/images/main-picture-desktop.png"
             alt="Boy and girl are reading books"
             srcSet="/assets/images/main-picture-desktop@2x.png 2x, /assets/images/main-picture-desktop.png 1x"
