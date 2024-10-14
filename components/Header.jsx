@@ -4,7 +4,7 @@ import UserNav from './UserNav';
 
 const Home = () => {
   return (
-    <header className="p-4 md:py-6 md:px-8 desk:px-[100px] flex justify-between">
+    <header className="p-4 md:py-6 md:px-8 desk:px-[100px] flex justify-between bg-white">
       <Link
         href="/"
         className="flex gap-4 items-center font-semibold text-[18px] md:text-[22px] leading-[133%] md:leading-[145%]"

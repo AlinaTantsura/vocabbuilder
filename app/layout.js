@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-macPaw h-[100vh] max-w-[375px] md:max-w-[768px] desk:max-w-[1440px] mx-auto flex flex-col">
           <Header />
-          <main className="grow-[1] flex justify-center items-center">
+          <main className="grow-[1] flex justify-center items-center bg-white-secondary">
             {children}
         </main>
         <ToastContainer />

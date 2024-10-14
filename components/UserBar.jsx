@@ -15,7 +15,6 @@ const UserBar = () => {
     
   if (!isLoggedIn) return null;
 
-  // if (!isLoggedIn) return null;
     // User bar for desktop header
 return (
     <div className="flex gap-2 md:gap-[28px] items-center">

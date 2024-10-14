@@ -1,13 +1,11 @@
-import { NextResponse } from "next/server";
-import jwt from 'jsonwebtoken';
 import User from "@/models/user";
-import { connectToDB } from "@/utils/database";
+import { connectToDB } from "./database";
+import { NextResponse } from "next/server";
 
-export const POST = async (req) => {
-    const authorization = req.headers.get('authorization')
+export const isAuth = async (authorization) => {
     const [bearer, token] = authorization.split(" ");
-    if (bearer !== "Bearer") return new NextResponse("Not authorized", { status: 401 })
-    
+    if (bearer !== "Bearer") return new NextResponse("Not authorized", { status: 401 });
+
     try {
         const { id } = jwt.verify(token, process.env.SECRET_KEY);
         await connectToDB();
@@ -16,10 +14,9 @@ export const POST = async (req) => {
             return new NextResponse("Not authorized", { status: 401 })
 
         }
-
-        await User.findByIdAndUpdate(id, {token: null});
-
-        return new NextResponse(null, { status: 204 })
+        else {
+            next();
+        }
 
     } catch (error) {
         return new NextResponse(error.message, { status: 500 })
